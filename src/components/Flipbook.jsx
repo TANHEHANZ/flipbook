@@ -1,4 +1,4 @@
-import React, { forwardRef, useState, useEffect, useRef } from "react";
+import { forwardRef, useEffect, useRef, useState } from "react";
 import HTMLFlipBook from "react-pageflip";
 import "./Flipbook.css";
 
