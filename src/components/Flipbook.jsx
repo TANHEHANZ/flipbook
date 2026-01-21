@@ -20,8 +20,9 @@ const Flipbook = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const imageModules = import.meta.glob('../assets/resources/*.{png,jpg,jpeg,JPG,jpeg}', { eager: true });
+    const imageModules = import.meta.glob('../assets/resources/*.webp', { eager: true });
     const imagePaths = Object.values(imageModules).map((mod) => mod.default);
+    console.log("Images found:", imagePaths.length);
     setImages(imagePaths);
     setLoading(false);
   }, []);
@@ -32,15 +33,15 @@ const Flipbook = () => {
 
   return (      
       <section className="flipbook-wrapper">
-        <div className="">
+        <div className="book-container">
           <HTMLFlipBook
             width={550}
             height={733}
             size="stretch"
-            minWidth={315}
-            maxWidth={1000}
-            minHeight={420}
-            maxHeight={1333}
+            minWidth={280}
+            maxWidth={800}
+            minHeight={400}
+            maxHeight={1200}
             maxShadowOpacity={0.5}
             showCover={true}
             mobileScrollSupport={true}
@@ -48,9 +49,13 @@ const Flipbook = () => {
             startPage={0}
             drawShadow={true}
             flippingTime={1000}
-            usePortrait={false}
+            usePortrait={true} 
             startZIndex={0}
             autoSize={true}
+            clickEventForward={true}
+            useMouseEvents={true}
+            swipeDistance={30}
+            showPageCorners={true}
           >
             {images.map((img, index) => (
               <Page key={index} number={index + 1}>
