@@ -44,13 +44,13 @@ const Flipbook = () => {
       <section className="flipbook-wrapper">
         <div className="book-container">
           <HTMLFlipBook
-            width={550}
-            height={733}
+            width={750}
+            height={1000}
             size="stretch"
-            minWidth={280}
-            maxWidth={800}
+            minWidth={300}
+            maxWidth={2000}
             minHeight={400}
-            maxHeight={1200}
+            maxHeight={2000}
             maxShadowOpacity={0.5}
             showCover={true}
             mobileScrollSupport={true}

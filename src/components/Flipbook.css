@@ -1,11 +1,11 @@
 .flipbook-wrapper {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; /* Move to the left */
   justify-content: center;
   width: 100%;
   height: 100vh;
-  padding: 0;
+  padding: 0 5vw; /* Padding on the left and right */
   box-sizing: border-box;
   z-index: 10;
 }
@@ -18,15 +18,23 @@
 
 .book-container {
   position: relative;
-  box-shadow: 0 0 50px rgba(0, 0, 0, 0.3);
   border-radius: 8px;
-  background: #222;
-  padding: 5px;
-  max-width: 95vw;
-  max-height: 80vh; /* Limited to 80% height */
+  background: #fff;
+  padding: 2px;
+  max-width: 95vw; /* allow width to expand based on height */
+  height: 90vh; /* 90% of viewport height */
+  aspect-ratio: 1.5 / 1; /* Approximate aspect ratio for two pages + edges */
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .book-container {
+    height: 70vh;
+    aspect-ratio: auto;
+    width: 90vw;
+  }
 }
 
 .album-web {
