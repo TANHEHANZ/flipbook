@@ -19,12 +19,21 @@ const Flipbook = () => {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
   useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    
     const imageModules = import.meta.glob('../assets/resources/*.webp', { eager: true });
     const imagePaths = Object.values(imageModules).map((mod) => mod.default);
-    console.log("Images found:", imagePaths.length);
     setImages(imagePaths);
     setLoading(false);
+
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   if (loading) {
@@ -49,13 +58,14 @@ const Flipbook = () => {
             startPage={0}
             drawShadow={true}
             flippingTime={1000}
-            usePortrait={true} 
+            usePortrait={isMobile} 
             startZIndex={0}
             autoSize={true}
             clickEventForward={true}
             useMouseEvents={true}
             swipeDistance={30}
             showPageCorners={true}
+            disableFlipByClick={false}
           >
             {images.map((img, index) => (
               <Page key={index} number={index + 1}>
